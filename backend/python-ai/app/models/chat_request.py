@@ -1,25 +1,15 @@
 from pydantic import BaseModel, Field
-
-
-class Message(BaseModel):
-    role: str = Field(
-        ...,
-        description="Role of the sender (system, user, assistant)"
-    )
-
-    content: str = Field(
-        ...,
-        description="Message content"
-    )
+from app.models.chat_message import ChatMessage
 
 
 class ChatRequest(BaseModel):
+
     model: str = Field(
         ...,
         description="Target LLM model"
     )
 
-    messages: list[Message]
+    messages: list[ChatMessage]
 
     temperature: float = Field(
         default=0.2,
