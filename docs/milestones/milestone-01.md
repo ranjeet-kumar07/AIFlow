@@ -1,0 +1,92 @@
+# Milestone 1 - Basic LLM Gateway
+
+## Goal
+
+Build a provider-independent AI Gateway capable of communicating with a local LLM.
+
+---
+
+## Components Completed
+
+- FastAPI
+- ChatRequest
+- ChatResponse
+- BaseProvider
+- OllamaProvider
+- ProviderFactory
+- LLMGateway
+- Configuration Management
+
+---
+
+## Design Patterns
+
+- Factory Pattern
+- Adapter Pattern
+- Gateway Pattern
+
+---
+
+## Request Flow
+
+Client
+
+↓
+
+FastAPI
+
+↓
+
+Gateway
+
+↓
+
+Factory
+
+↓
+
+Provider
+
+↓
+
+Ollama
+
+↓
+
+Model
+
+↓
+
+Provider
+
+↓
+
+Gateway
+
+↓
+
+Client
+
+---
+
+## What I Learned
+
+- How an LLM is called over HTTP
+- Why adapters hide provider-specific APIs
+- Why factories centralize object creation
+- Why gateways orchestrate requests
+- How configuration is loaded using `.env`
+- How FastAPI automatically converts JSON into Python objects
+
+---
+
+## Future Improvements
+
+- Structured Logging
+- Request IDs
+- Error Handling
+- Retry
+- Metrics
+- Streaming
+- Authentication
+- Multiple Providers

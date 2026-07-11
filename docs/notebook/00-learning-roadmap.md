@@ -48,3 +48,27 @@ Sprint 10 — MCP
 Sprint 11 — Production Hardening
 
 Sprint 12 — Microservices
+
+
+
+## Milestone 1 Progress
+
+### Completed
+
+- Configuration using .env and BaseSettings
+- Adapter Pattern
+- Factory Pattern
+- Gateway Pattern
+- Provider Abstraction
+- Runtime Flow of Configuration
+- Runtime Flow of AI Request
+
+### Key Learning
+
+Gateway orchestrates requests.
+
+Factory creates providers.
+
+Provider communicates with external LLM.
+
+Each class has one responsibility.
