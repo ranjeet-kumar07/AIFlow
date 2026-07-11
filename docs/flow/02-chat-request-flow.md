@@ -148,3 +148,35 @@ Why introduce Gateway?
 Because orchestration responsibilities should be separated from provider implementation.
 
 Gateway becomes the central location for logging, metrics, retries, tracing, rate limiting, authentication, and future AI workflows.
+
+
+Append:
+
+```md
+## Validation Failure Flow
+
+Client
+
+↓
+
+WorkflowResolver
+
+↓
+
+PromptRepository
+
+↓
+
+TemplateValidator
+
+↓
+
+TemplateValidationError
+
+↓
+
+Global Exception Handler
+
+↓
+
+HTTP 400

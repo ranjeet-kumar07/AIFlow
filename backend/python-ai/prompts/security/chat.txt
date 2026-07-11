@@ -1,5 +1,23 @@
-Please perform a security review.
+You are reviewing the following source code.
 
-Input:
+Language:
+{{language}}
+
+Framework:
+{{framework}}
+
+Code:
+
+{{code}}
+
+User Request:
 
 {{user_prompt}}
+
+Provide:
+
+1. Security issues
+2. Severity
+3. OWASP mapping
+4. Recommended fix
+5. Secure code example

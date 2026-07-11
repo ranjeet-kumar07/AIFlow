@@ -3,6 +3,8 @@ from app.prompt.prompt_repository import PromptRepository
 from app.services.observability_service import (
     ObservabilityService
 )
+from app.template.template_renderer import TemplateRenderer
+from app.template.template_validator import TemplateValidator
 
 
 class PromptManager:
@@ -10,7 +12,8 @@ class PromptManager:
     @staticmethod
     def build_messages(
         workflow: str,
-        user_prompt: str
+        user_prompt: str,
+        variables: dict[str, str]
     ) -> list[ChatMessage]:
 
         system_prompt = PromptRepository.load(
@@ -31,11 +34,22 @@ class PromptManager:
         ObservabilityService.prompt_loaded(
             workflow,
             "chat.txt"
+
+        )
+        
+        render_variables = dict(variables)
+        render_variables["user_prompt"] = user_prompt
+
+        TemplateValidator.validate(
+            chat_template,
+            render_variables
         )
 
-        user_message = chat_template.replace(
-            "{{user_prompt}}",
-            user_prompt
+
+        user_message = TemplateRenderer.render(
+            chat_template,
+            render_variables
+            
         )
 
         return [

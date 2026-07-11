@@ -32,7 +32,8 @@ class LLMGateway:
         # Build AIFlow messages
         messages = PromptManager.build_messages(
             workflow["prompt_directory"],
-            request.prompt
+            request.prompt,
+            request.variables
         )
 
         # Convert API request into internal provider request

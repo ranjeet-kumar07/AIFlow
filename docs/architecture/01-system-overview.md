@@ -36,3 +36,37 @@ Benefits:
 - Easy provider onboarding
 - Centralized configuration
 - Clear separation of concerns
+
+Request
+
+↓
+
+Gateway
+
+↓
+
+Workflow Resolver
+
+↓
+
+Prompt Manager
+
+↓
+
+Template Validator
+
+↓
+
+Provider Factory
+
+↓
+
+Provider
+
+↓
+
+LLM
+
+↓
+
+Response

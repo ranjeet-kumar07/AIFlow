@@ -4,6 +4,12 @@ from app.gateway.gateway import LLMGateway
 from app.models.chat_request import ChatRequest
 from app.models.chat_response import ChatResponse
 from app.middleware.logging_middleware import LoggingMiddleware
+from app.exceptions.handlers import (
+    template_validation_exception_handler,
+)
+from app.exceptions.template_validation_error import (
+    TemplateValidationError,
+)
 
 app = FastAPI(
     title="AIFlow",
@@ -35,3 +41,9 @@ def chat(
 ):
 
     return gateway.generate_response(request)
+
+
+app.add_exception_handler(
+    TemplateValidationError,
+    template_validation_exception_handler
+)

@@ -78,3 +78,11 @@ class ObservabilityService:
             f"[{request_id.get()}] "
             f"EVENT=RequestCompleted"
         )
+
+    @staticmethod
+    def validation_failed(message: str):
+        logger.error(
+            f"[{request_id.get()}] "
+            f"EVENT=ValidationFailed "
+            f"Reason={message}"
+        )    

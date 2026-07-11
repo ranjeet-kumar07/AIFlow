@@ -106,3 +106,13 @@ Client
 ### Outcome
 
 AIFlow now supports workflow-based prompt orchestration, enabling different AI behaviors through configurable prompt directories while maintaining provider independence.
+
+## Sprint 8
+
+Completed
+
+- Dynamic prompt variables
+- Template rendering
+- Template validation
+- Global exception handling
+- Structured workflow prompts

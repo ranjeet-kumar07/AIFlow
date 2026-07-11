@@ -1,3 +1,5 @@
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 
@@ -17,6 +19,11 @@ class ChatRequest(BaseModel):
         ...,
         min_length=1,
         description="User prompt"
+    )
+
+    variables: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Variables used for prompt rendering"
     )
 
     temperature: float = Field(
