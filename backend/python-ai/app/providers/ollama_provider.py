@@ -1,4 +1,4 @@
-import requests
+from app.clients.ollama_client import OllamaClient
 
 from app.config.settings import settings
 from app.models.provider_request import ProviderRequest
@@ -22,15 +22,9 @@ class OllamaProvider(BaseProvider):
             "stream": False
         }
 
-        response = requests.post(
-            f"{settings.OLLAMA_BASE_URL}/api/chat",
-            json=payload,
-            timeout=120
-        )
+        client = OllamaClient()
 
-        response.raise_for_status()
-
-        data = response.json()
+        data = client.chat(payload)
 
         prompt_tokens = data.get("prompt_eval_count", 0)
         completion_tokens = data.get("eval_count", 0)

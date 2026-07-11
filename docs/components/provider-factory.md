@@ -78,3 +78,52 @@ Why use a Factory instead of directly creating providers?
 Answer:
 
 The Factory centralizes provider creation and removes provider-specific dependencies from the Gateway, making it easy to introduce new providers without modifying business logic.
+
+# Provider Factory
+
+## Responsibility
+
+The ProviderFactory selects the correct LLM provider based on application configuration.
+
+## Registry Pattern
+
+Instead of maintaining a growing chain of conditional statements, AIFlow uses a provider registry.
+
+Benefits:
+
+- Easy to add new providers.
+- Factory remains unchanged.
+- Better separation of responsibilities.
+
+Flow:
+
+Gateway
+
+↓
+
+ProviderFactory
+
+↓
+
+Provider Registry
+
+↓
+
+Provider Instance
+
+## Supported Providers
+
+The Provider Registry maps provider names to their implementations.
+
+Current providers:
+
+- OllamaProvider
+- OpenAIProvider
+
+New providers can be added by:
+
+1. Implementing `BaseProvider`
+2. Creating the corresponding Client
+3. Registering the provider in `PROVIDER_REGISTRY`
+
+No changes to the Gateway are required.

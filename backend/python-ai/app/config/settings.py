@@ -9,7 +9,9 @@ class Settings(BaseSettings):
 
     OLLAMA_MODEL: str
 
+
     OPENAI_API_KEY: str = ""
+    OPENAI_MODEL: str = "gpt-4.1-mini"
 
     class Config:
         env_file = ".env"

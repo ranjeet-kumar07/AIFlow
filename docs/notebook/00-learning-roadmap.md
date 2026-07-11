@@ -72,3 +72,18 @@ Factory creates providers.
 Provider communicates with external LLM.
 
 Each class has one responsibility.
+
+## Sprint 5 Learnings
+
+Patterns learned:
+
+- Factory Pattern
+- Registry Pattern
+- Client Layer Pattern
+- Strategy Pattern
+
+Key takeaway:
+
+The Gateway never communicates directly with external APIs.
+Providers encapsulate AI-specific logic.
+Clients encapsulate network communication.
