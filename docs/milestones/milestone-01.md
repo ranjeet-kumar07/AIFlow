@@ -90,3 +90,19 @@ Client
 - Streaming
 - Authentication
 - Multiple Providers
+
+
+## Sprint 7
+
+### Features
+
+- Workflow Registry
+- Workflow Resolver
+- Prompt Repository
+- Prompt Manager improvements
+- Provider Request abstraction
+- Prompt loading observability
+
+### Outcome
+
+AIFlow now supports workflow-based prompt orchestration, enabling different AI behaviors through configurable prompt directories while maintaining provider independence.

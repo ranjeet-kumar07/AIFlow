@@ -1,5 +1,8 @@
 from app.models.chat_message import ChatMessage
 from app.prompt.prompt_repository import PromptRepository
+from app.services.observability_service import (
+    ObservabilityService
+)
 
 
 class PromptManager:
@@ -15,7 +18,17 @@ class PromptManager:
             "system.txt"
         )
 
+        ObservabilityService.prompt_loaded(
+            workflow,
+            "system.txt"
+        )
+
         chat_template = PromptRepository.load(
+            workflow,
+            "chat.txt"
+        )
+
+        ObservabilityService.prompt_loaded(
             workflow,
             "chat.txt"
         )

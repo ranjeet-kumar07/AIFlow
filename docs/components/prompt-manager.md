@@ -142,3 +142,13 @@ Examples:
 - summarizer
 
 This enables multiple AI capabilities while reusing the same PromptManager.
+
+## Current Responsibilities
+
+PromptManager now performs:
+
+1. Loads system prompt
+2. Loads chat template
+3. Replaces template variables
+4. Builds ChatMessage objects
+5. Emits prompt loading observability events

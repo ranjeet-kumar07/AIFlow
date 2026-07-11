@@ -120,3 +120,42 @@ without changing business logic.
 - Better Separation of Concerns
 - Easier Debugging
 - Production Ready
+
+current: after adding workflow
+Client
+
+↓
+
+FastAPI
+
+↓
+
+LoggingMiddleware
+
+↓
+
+LLMGateway
+
+↓
+
+WorkflowResolver
+
+↓
+
+PromptManager
+
+↓
+
+ProviderRequest
+
+↓
+
+ProviderFactory
+
+↓
+
+LLM Provider
+
+↓
+
+Response

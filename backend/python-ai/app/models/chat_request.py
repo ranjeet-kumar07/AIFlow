@@ -8,6 +8,11 @@ class ChatRequest(BaseModel):
         description="Target LLM model"
     )
 
+    workflow: str = Field(
+        default="general",
+        description="AI workflow to execute"
+    )
+
     prompt: str = Field(
         ...,
         min_length=1,

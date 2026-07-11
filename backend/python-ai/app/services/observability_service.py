@@ -7,7 +7,9 @@ from app.utils.logger import logger
 class ObservabilityService:
 
     @staticmethod
-    def request_started(request: ChatRequest):
+    def request_started(
+        request: ChatRequest
+    ):
 
         logger.info(
             f"[{request_id.get()}] "
@@ -16,12 +18,40 @@ class ObservabilityService:
         )
 
     @staticmethod
-    def provider_selected(provider_name: str):
+    def workflow_resolved(
+        workflow: str
+    ):
+
+        logger.info(
+            f"[{request_id.get()}] "
+            f"EVENT=WorkflowResolved "
+            f"Workflow={workflow}"
+        )
+
+    @staticmethod 
+    def prompt_loaded(
+        workflow: str,
+        template: str
+    ):
+
+        logger.info(
+            f"[{request_id.get()}]"
+            f"EVENT=PromptLoaded "
+            f"Workflow={workflow} "
+            f"Template={template}"
+        )   
+
+    @staticmethod
+    def provider_selected(
+        provider_name: str,
+        model: str
+    ):
 
         logger.info(
             f"[{request_id.get()}] "
             f"EVENT=ProviderSelected "
             f"Provider={provider_name}"
+            f"Model={model}"
         )
 
     @staticmethod

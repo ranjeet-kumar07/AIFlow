@@ -6,6 +6,7 @@ from app.models.provider_request import ProviderRequest
 from app.prompt.prompt_manager import PromptManager
 from app.providers.provider_factory import ProviderFactory
 from app.services.observability_service import ObservabilityService
+from app.workflow.workflow_resolver import WorkflowResolver
 
 
 class LLMGateway:
@@ -19,9 +20,18 @@ class LLMGateway:
 
         start = time.perf_counter()
 
-        # Build internal AIFlow messages
+        # Resolve workflow
+        workflow = WorkflowResolver.resolve(
+            request
+        )
+
+        ObservabilityService.workflow_resolved(
+            request.workflow
+        )
+
+        # Build AIFlow messages
         messages = PromptManager.build_messages(
-            "general",
+            workflow["prompt_directory"],
             request.prompt
         )
 
@@ -38,7 +48,8 @@ class LLMGateway:
         )
 
         ObservabilityService.provider_selected(
-            provider.__class__.__name__
+            provider.__class__.__name__,
+            provider_request.model
         )
 
         response = provider.generate_response(
