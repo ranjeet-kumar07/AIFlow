@@ -25,3 +25,17 @@
 
 This release establishes the architectural foundation for AIFlow.
 Future releases will add multi-provider support, streaming, memory, RAG, and agent workflows.
+
+## v0.2.0
+
+### Added
+- ProviderRequest internal model
+- Prompt pipeline integration
+
+### Changed
+- ChatRequest now accepts a prompt instead of messages
+- PromptManager is now part of the runtime execution flow
+- Gateway converts ChatRequest to ProviderRequest
+
+### Architecture
+- Clean separation between API DTOs and internal provider models
