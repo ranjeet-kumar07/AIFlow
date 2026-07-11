@@ -87,3 +87,11 @@ Key takeaway:
 The Gateway never communicates directly with external APIs.
 Providers encapsulate AI-specific logic.
 Clients encapsulate network communication.
+
+## Sprint 6 Learnings
+
+Prompt engineering should be separated from application logic.
+
+Instead of embedding prompts inside Python code, prompts are stored as external templates.
+
+This makes prompt changes independent from application deployments.

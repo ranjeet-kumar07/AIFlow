@@ -116,3 +116,29 @@ User Message
 ```
 
 This design aligns with modern chat-based LLM APIs and makes future features easier to add without redesigning the prompt flow.
+
+## Prompt Loading Flow
+
+PromptManager no longer stores prompt text.
+
+Instead it:
+
+1. Loads templates from PromptRepository
+2. Replaces template variables
+3. Creates ChatMessage objects
+
+This separates prompt storage from prompt assembly.
+
+## Workflow Selection
+
+PromptManager accepts a workflow name.
+
+The workflow determines which prompt templates are loaded.
+
+Examples:
+
+- general
+- security
+- summarizer
+
+This enables multiple AI capabilities while reusing the same PromptManager.

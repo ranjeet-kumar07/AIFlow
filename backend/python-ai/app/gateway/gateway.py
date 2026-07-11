@@ -4,8 +4,8 @@ from app.models.chat_request import ChatRequest
 from app.models.chat_response import ChatResponse
 from app.models.provider_request import ProviderRequest
 from app.prompt.prompt_manager import PromptManager
-from app.services.observability_service import ObservabilityService
 from app.providers.provider_factory import ProviderFactory
+from app.services.observability_service import ObservabilityService
 
 
 class LLMGateway:
@@ -21,6 +21,7 @@ class LLMGateway:
 
         # Build internal AIFlow messages
         messages = PromptManager.build_messages(
+            "general",
             request.prompt
         )
 
