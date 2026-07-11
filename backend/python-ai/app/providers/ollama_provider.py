@@ -1,7 +1,7 @@
 import requests
 
 from app.config.settings import settings
-from app.models.chat_request import ChatRequest
+from app.models.provider_request import ProviderRequest
 from app.models.chat_response import ChatResponse
 from app.providers.base_provider import BaseProvider
 
@@ -10,7 +10,7 @@ class OllamaProvider(BaseProvider):
 
     def generate_response(
         self,
-        request: ChatRequest
+       request: ProviderRequest
     ) -> ChatResponse:
 
         payload = {

@@ -222,3 +222,38 @@ ChatResponse
 The Gateway orchestrates this entire flow.
 
 Every other component has one responsibility.
+
+---
+
+# ProviderRequest
+
+ProviderRequest is an internal domain model.
+
+It separates the public API (ChatRequest) from provider-specific communication.
+
+Benefits:
+
+- Public API can evolve independently.
+- Providers receive a consistent internal request.
+- Easier provider replacement.
+- Cleaner architecture.
+
+Flow:
+
+Client
+
+↓
+
+ChatRequest
+
+↓
+
+Gateway
+
+↓
+
+ProviderRequest
+
+↓
+
+Provider

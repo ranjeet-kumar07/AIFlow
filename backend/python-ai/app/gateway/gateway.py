@@ -3,6 +3,8 @@ import time
 from app.gateway.provider_factory import ProviderFactory
 from app.models.chat_request import ChatRequest
 from app.models.chat_response import ChatResponse
+from app.models.provider_request import ProviderRequest
+from app.prompt.prompt_manager import PromptManager
 from app.services.observability_service import ObservabilityService
 
 
@@ -17,6 +19,19 @@ class LLMGateway:
 
         start = time.perf_counter()
 
+        # Build internal AIFlow messages
+        messages = PromptManager.build_messages(
+            request.prompt
+        )
+
+        # Convert API request into internal provider request
+        provider_request = ProviderRequest(
+            model=request.model,
+            messages=messages,
+            temperature=request.temperature,
+            max_tokens=request.max_tokens
+        )
+
         provider = ProviderFactory.get_provider(
             request.model
         )
@@ -25,7 +40,9 @@ class LLMGateway:
             provider.__class__.__name__
         )
 
-        response = provider.generate_response(request)
+        response = provider.generate_response(
+            provider_request
+        )
 
         latency = (
             time.perf_counter() - start

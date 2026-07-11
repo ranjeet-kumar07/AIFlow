@@ -1,20 +1,14 @@
 from abc import ABC, abstractmethod
 
-from app.models.chat_request import ChatRequest
+from app.models.provider_request import ProviderRequest
 from app.models.chat_response import ChatResponse
 
 
 class BaseProvider(ABC):
-    """
-    Contract that every LLM provider must implement.
-    """
 
     @abstractmethod
     def generate_response(
         self,
-        request: ChatRequest
+        request: ProviderRequest
     ) -> ChatResponse:
-        """
-        Generate a response from an LLM.
-        """
         pass

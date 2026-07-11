@@ -1,5 +1,4 @@
 from pydantic import BaseModel, Field
-from app.models.chat_message import ChatMessage
 
 
 class ChatRequest(BaseModel):
@@ -9,7 +8,11 @@ class ChatRequest(BaseModel):
         description="Target LLM model"
     )
 
-    messages: list[ChatMessage]
+    prompt: str = Field(
+        ...,
+        min_length=1,
+        description="User prompt"
+    )
 
     temperature: float = Field(
         default=0.2,

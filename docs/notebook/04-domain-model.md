@@ -67,3 +67,21 @@ Benefits:
 - No duplicate schemas
 - Easier maintenance
 - Consistent message flow across the platform
+
+---
+
+## ChatRequest vs ProviderRequest
+
+ChatRequest
+
+- Public API model
+- Used by FastAPI
+- Represents client input
+
+ProviderRequest
+
+- Internal model
+- Used only inside AIFlow
+- Passed to providers
+
+This separation follows the same principle as using DTOs and domain models in backend applications.
