@@ -116,3 +116,23 @@ Completed
 - Template validation
 - Global exception handling
 - Structured workflow prompts
+
+### Sprint 9
+
+Started Tool Calling Engine
+
+Completed
+
+- BaseTool abstraction
+- Tool Registry
+- Tool Executor
+- Calculator Tool
+- Tool Metadata
+- ToolCall model
+- ToolResult model
+- ProviderResponse abstraction
+- Simulated provider tool calling
+- ToolExecutor
+- Gateway executes tool requests
+- First working agent loop
+- Dynamic tool argument extraction

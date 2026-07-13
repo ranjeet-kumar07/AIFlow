@@ -70,3 +70,57 @@ LLM
 ↓
 
 Response
+
+
+## Tool Layer
+
+```
+                AI Gateway
+                     │
+                     ▼
+              Tool Executor
+                     │
+          ┌──────────┼──────────┐
+          ▼          ▼          ▼
+   Calculator     Weather      Time
+```
+
+The Tool Layer provides external capabilities that can be invoked during AI workflows.
+
+It is independent of the LLM provider implementation.
+
+Gateway
+
+↓
+
+Tool Executor
+
+↓
+
+Tool Registry
+
+↓
+
+BaseTool
+
+↓
+
+Concrete Tool
+
+Gateway
+
+↓
+
+Tool Metadata
+
+↓
+
+Available Tools
+
+↓
+
+LLM chooses Tool
+
+↓
+
+Tool Executor

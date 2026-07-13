@@ -6,6 +6,7 @@ from app.models.provider_request import ProviderRequest
 from app.prompt.prompt_manager import PromptManager
 from app.providers.provider_factory import ProviderFactory
 from app.services.observability_service import ObservabilityService
+from app.tools.tool_executor import ToolExecutor
 from app.workflow.workflow_resolver import WorkflowResolver
 
 
@@ -53,9 +54,53 @@ class LLMGateway:
             provider_request.model
         )
 
-        response = provider.generate_response(
+        # First LLM call
+        provider_response = provider.generate_response(
             provider_request
         )
+
+        # Tool execution path
+        if provider_response.tool_call:
+
+            ObservabilityService.tool_execution_started(
+                provider_response.tool_call.tool_name
+            )
+
+            tool_result = ToolExecutor.execute(
+                provider_response.tool_call
+            )
+
+            ObservabilityService.tool_execution_completed(
+                provider_response.tool_call.tool_name,
+                tool_result.result
+            )
+
+            # Add tool result to conversation
+            messages = PromptManager.append_tool_result(
+                messages,
+                provider_response.tool_call.tool_name,
+                tool_result.result
+            )
+
+            # Create second provider request
+            provider_request = ProviderRequest(
+                model=request.model,
+                messages=messages,
+                temperature=request.temperature,
+                max_tokens=request.max_tokens
+            )
+
+            ObservabilityService.tool_result_sent_back(
+                provider_response.tool_call.tool_name
+            )
+
+            # Second LLM call
+            provider_response = provider.generate_response(
+                provider_request
+            )
+
+        # Final response (normal path or after tool execution)
+        response = provider_response.chat_response
 
         latency = (
             time.perf_counter() - start
