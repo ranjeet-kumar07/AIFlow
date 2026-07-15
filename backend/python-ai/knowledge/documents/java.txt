@@ -1,0 +1,5 @@
+Java is a high-level, object-oriented programming language developed by Sun Microsystems.
+
+Spring Boot is a framework for building production-ready Java applications.
+
+Dependency Injection is one of the core concepts in Spring Framework.

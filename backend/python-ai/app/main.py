@@ -1,15 +1,17 @@
 from fastapi import FastAPI
 
 from app.gateway.gateway import LLMGateway
+from app.middleware.logging_middleware import LoggingMiddleware
 from app.models.chat_request import ChatRequest
 from app.models.chat_response import ChatResponse
-from app.middleware.logging_middleware import LoggingMiddleware
 from app.exceptions.handlers import (
     template_validation_exception_handler,
 )
 from app.exceptions.template_validation_error import (
     TemplateValidationError,
 )
+from app.rag.knowledge_loader import KnowledgeLoader
+
 
 app = FastAPI(
     title="AIFlow",
@@ -19,6 +21,9 @@ app = FastAPI(
 app.add_middleware(
     LoggingMiddleware
 )
+
+# Load the knowledge base into the vector store
+KnowledgeLoader.initialize()
 
 gateway = LLMGateway()
 

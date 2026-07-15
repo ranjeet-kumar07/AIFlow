@@ -28,18 +28,18 @@ class ObservabilityService:
             f"Workflow={workflow}"
         )
 
-    @staticmethod 
+    @staticmethod
     def prompt_loaded(
         workflow: str,
         template: str
     ):
 
         logger.info(
-            f"[{request_id.get()}]"
+            f"[{request_id.get()}] "
             f"EVENT=PromptLoaded "
             f"Workflow={workflow} "
             f"Template={template}"
-        )   
+        )
 
     @staticmethod
     def provider_selected(
@@ -50,7 +50,7 @@ class ObservabilityService:
         logger.info(
             f"[{request_id.get()}] "
             f"EVENT=ProviderSelected "
-            f"Provider={provider_name}"
+            f"Provider={provider_name} "
             f"Model={model}"
         )
 
@@ -80,52 +80,84 @@ class ObservabilityService:
         )
 
     @staticmethod
-    def validation_failed(message: str):
+    def validation_failed(
+        message: str
+    ):
+
         logger.error(
             f"[{request_id.get()}] "
             f"EVENT=ValidationFailed "
             f"Reason={message}"
-        )    
+        )
 
     @staticmethod
-    def tool_requested(tool_name: str):
+    def tool_requested(
+        tool_name: str
+    ):
+
         logger.info(
             f"[{request_id.get()}] "
-            f"EVENT=ToolRequested  "
+            f"EVENT=ToolRequested "
             f"Tool={tool_name}"
-        )    
+        )
 
     @staticmethod
-    def tool_execution_started(tool_name: str):
+    def tool_execution_started(
+        tool_name: str
+    ):
+
         logger.info(
             f"[{request_id.get()}] "
             f"EVENT=ToolExecutionStarted "
             f"Tool={tool_name}"
         )
 
-
     @staticmethod
-    def tool_execution_completed(tool_name: str,result: str):
+    def tool_execution_completed(
+        tool_name: str,
+        result: str
+    ):
 
         logger.info(
             f"[{request_id.get()}] "
             f"EVENT=ToolExecutionCompleted "
             f"Tool={tool_name} "
             f"Result={result}"
-    )
-        
+        )
+
     @staticmethod
-    def tool_result_sent_back(tool_name: str):
+    def tool_result_sent_back(
+        tool_name: str
+    ):
+
         logger.info(
             f"[{request_id.get()}] "
             f"EVENT=ToolResultSentBack "
             f"Tool={tool_name}"
-        )   
-        
+        )
+
     @staticmethod
-    def expression_parsed(expression: str):
+    def expression_parsed(
+        expression: str
+    ):
+
         logger.info(
             f"[{request_id.get()}] "
             f"EVENT=ExpressionParsed "
             f"Expression={expression}"
-        )     
+        )
+
+    @staticmethod
+    def info(
+        message: str
+    ):
+
+        try:
+            rid = request_id.get()
+        except LookupError:
+            rid = "SYSTEM"
+
+        logger.info(
+            f"[{rid}] "
+            f"{message}"
+        )

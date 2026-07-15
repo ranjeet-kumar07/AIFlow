@@ -1,5 +1,6 @@
 from app.models.chat_message import ChatMessage
 from app.prompt.prompt_repository import PromptRepository
+from app.rag.retriever import Retriever
 from app.services.observability_service import ObservabilityService
 from app.template.template_renderer import TemplateRenderer
 from app.template.template_validator import TemplateValidator
@@ -35,7 +36,26 @@ class PromptManager:
         )
 
         render_variables = dict(variables)
+
         render_variables["user_prompt"] = user_prompt
+
+        # -----------------------------
+        # Retrieve relevant knowledge
+        # -----------------------------
+        retrieved_chunks = Retriever.retrieve(
+            user_prompt
+        )
+
+        context = "\n\n".join(
+            chunk.content
+            for chunk in retrieved_chunks
+        )
+        
+        print("\n===== RAG CONTEXT =====")
+        print(context)
+        print("=======================\n")
+
+        render_variables["context"] = context
 
         TemplateValidator.validate(
             chat_template,

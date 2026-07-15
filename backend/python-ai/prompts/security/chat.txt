@@ -1,5 +1,11 @@
 You are reviewing the following source code.
 
+Relevant Knowledge:
+
+{{context}}
+
+----------------------------------------
+
 Language:
 {{language}}
 
